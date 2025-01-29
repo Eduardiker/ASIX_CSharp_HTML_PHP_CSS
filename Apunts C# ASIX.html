@@ -1,0 +1,1455 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>VisualCode</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="18e87ea7-b906-4e22-acdc-5f05da88f99c" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="VisualCode%2018e87ea7b9064e22acdc5f05da88f99c/vc.jpg"/></div><h1 class="page-title">VisualCode</h1><p class="page-description"></p></header><div class="page-body"><p id="d5ce8d43-e1ee-461e-b000-876407a9fd44" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Crear un nou entorn</summary><div class="indented"><p id="f6d10624-8e56-42fd-a3c5-dda8cc019aa0" class="">Terminal → Nuevo terminal → dotnet new console</p><p id="6e382557-f694-4a44-9c3b-a3d7f3552679" class="">dotnet new console —use—program—main </p></div></details><h2 id="2ceec2dc-5c89-4d5a-98b6-d776a0f793c9" class="">Tipus d’operacions</h2><p id="5be0198b-0c30-4dd5-9ef3-cc958b1ab86b" class=""> =  Es asignació</p><div id="9d8b32ae-b786-4bed-bae0-b454b0d90360" class="column-list"><div id="f8d092fc-e64c-4f5f-85b8-9a40a9001a3a" style="width:50%" class="column"><p id="1cbd207d-4422-464e-89a2-14e202c99056" class="">+ Suma</p></div><div id="99ecb4ea-cce5-4207-abf3-7a9b926eb6fd" style="width:50%" class="column"><p id="0eaec75b-7394-4d96-beef-45543831411b" class="">- Resta</p></div></div><p id="b3e60efb-5940-43d4-8b3b-e8ebf60033c5" class="">* Multiplicació</p><div id="20ded9e9-44a5-4f18-8262-882462a538e6" class="column-list"><div id="3235bf8f-545f-4855-92d3-633fd21ab745" style="width:31.25%" class="column"><p id="96577d3b-55f6-40b8-8c62-997f600db58a" class="">/ Divisó</p></div><div id="c81a317a-15ef-4736-af8f-09823a3085e6" style="width:68.75%" class="column"><p id="1d2390e0-d9c7-431e-bce8-6a180713b64b" class="">% Resto</p></div></div><p id="95c866a9-6fc4-4e55-867f-7b0b644c78fd" class="">! Negació</p><div id="867eccbb-f100-4d9b-aff7-0322b37a5481" class="column-list"><div id="5202c91e-4f81-494b-aa78-de46319b29dc" style="width:25%" class="column"><p id="82c2b231-d486-4d1c-a46e-ebb71fe96e44" class="">&lt; Més petit</p></div><div id="5b0ceb40-e893-4f75-9d4e-b24a46a4e7af" style="width:25%" class="column"><p id="0e17270b-700c-43dc-82c0-57878108a45c" class="">&gt; Més gran</p></div><div id="3b68908a-2c97-4280-adcc-ff76b8a8fc9d" style="width:25%" class="column"><p id="920f0699-a27d-4786-94eb-b3b921b107f1" class="">≤ Més petit o igual</p></div><div id="583f8cc0-067d-4fed-b1e4-5e9ca28ddee5" style="width:25%" class="column"><p id="63a985bb-4dec-4676-8369-2833bc1466b8" class="">≥ Més gran o igual</p></div></div><div id="48e44b7b-3886-4146-9fb8-7258813a5842" class="column-list"><div id="c15e8bee-eeb3-40fc-b204-0bb313fd0eae" style="width:50%" class="column"><p id="8be71b4e-7434-47d6-9029-401db6230a07" class="">|| OR</p><p id="8e160a69-8173-4c4b-b318-bd187182ef0f" class="">== Igualdad</p><p id="fec1c53a-0e7e-4383-8bc3-cf51f7f8c83b" class="">++ Increment +1</p><p id="0d6e8d87-e212-413d-8893-2dbea5969456" class="">Ex. Valor1 ++, Valor2 —</p></div><div id="65532d63-5c39-49cc-8bb7-9b7fa28731e6" style="width:50%" class="column"><p id="2e8b9698-1199-436e-8ded-0f2a0050d9cf" class="">&amp;&amp; AND</p><p id="67e08bcd-152e-4cda-80e3-fabddf8355ee" class="">! = Desigual</p><p id="25b66615-acc0-4e30-8ca5-c3086272951a" class="">— Desincrement -1</p></div></div><hr id="0495be8a-9d47-427f-8b1a-8d28ca82eb98"/><h3 id="9552e384-c445-4d66-b502-db4ead552ac4" class="">Typecasting</h3><p id="631a4b5c-e57e-41a1-a71c-1ff31df10fdf" class="">S’utiliza per especifica que el resultat d’una acció ha de ser d’un tipus de variable en concret.</p><p id="15e64f16-8830-453e-b94d-9db60932f8f8" class="">Ex. (double) a/b; aixó implica que el resultat d’aquesta divisió serà decimal tot i que a o b siguin int.</p><p id="24ac705b-a2c7-42e0-8523-a1af09cb6aaa" class="">Ex. (char) a; aixó implica que es mostrarà la lletra o el caràcter al cual correspon en la taula ASCII</p><p id="3b766116-6b93-4f56-84c9-e3e9ea29b79b" class="">Ex. (int) a; aixó implica que si a és una variable tipus char, es mostrarà el codi, numero,  ASCII de la lletra.</p><h1 id="a8443921-9c92-4a61-9dc9-24f3245f3072" class=""><span style="border-bottom:0.05em solid">Comandes C#</span></h1><div id="f7ff78db-11b3-47f7-b7eb-40e66f83e2f5" class="column-list"><div id="7a1c5543-58f8-4349-8435-8c50900be78a" style="width:50%" class="column"><pre id="8a45acef-9309-4030-ba58-7d818b3ebfd6" class="code"><span><code>Console.Writeline(&quot;&quot;);</code></span></pre></div><div id="cf80513e-dd7b-4f55-930b-205c8cbf3312" style="width:50%" class="column"><blockquote id="50012d0c-d57c-4bf9-9349-b1cb446195ea" class="">Escriure alguna cosa per pantalla </blockquote><p id="d06e028a-b9af-4f46-9d11-7aa1928cd8ba" class="">
+</p></div></div><div id="09614ee8-a79d-4982-8c04-0c368597e3a8" class="column-list"><div id="3ebb031c-9d7a-455e-b367-a9925ecc3de5" style="width:62.5%" class="column"><blockquote id="f849da41-7e42-4a21-91c1-a1f00b5cdf3f" class="">Establir una variable, pot ser entera (int), o decimal (double), o un caràcter (char), o un conjunt de caràcters com un nom (string). Bool pot ser true o false.</blockquote><figure id="f6536822-b376-4e6d-9760-c4200252abe8"><div class="source"><a href="VisualCode%2018e87ea7b9064e22acdc5f05da88f99c/Tipus_Bsics_C.pdf">Tipus Bàsics C#.pdf</a></div></figure></div><div id="0790347f-97e1-40b2-8a65-d9319629710a" style="width:37.49999999999999%" class="column"><pre id="55675758-b75f-4ebb-886d-68c2b96cc830" class="code"><span><code>int valor1; 
+double valor2;
+char valor3;
+string valor4
+bool valor5;</code></span></pre></div></div><div id="4a7d2dc0-d08b-4339-a2c8-f57b6f1f5407" class="column-list"><div id="63fa1cd0-c5a5-43fa-9376-33f628691eaf" style="width:62.5%" class="column"><pre id="928fd844-25bd-4d99-a438-0d7b8927584e" class="code"><span><code>valor1 = Convert.ToInt32(Console.Readline());
+valor2 = Console.Readkey().Keychar;</code></span></pre><ul id="a421eed2-a17c-402f-92d7-abecdbeed796" class="toggle"><li><details open=""><summary>ReadKey</summary><p id="81d74464-dbd5-4ca2-ac35-19879dabe06f" class="">Si a Readkey(True) la consola llegeix direcament el valor introduit i no el mostra a pantalla</p></details></li></ul></div><div id="0c09056e-9363-4dd9-b1a5-4843cf280910" style="width:37.50000000000001%" class="column"><blockquote id="6771484b-9812-4daf-be25-209bef13c427" class="">Llegir un valor introduit per l’usuari. </blockquote><p id="dc178d0a-35b3-44a0-831b-5bea6698b1b0" class="">
+</p></div></div><div id="5ec3c4ff-a17a-413f-a13f-dffd1dd46968" class="column-list"><div id="d3a79706-f382-4ca6-8057-278bea7dcb26" style="width:50%" class="column"><blockquote id="0335b412-24dc-4d8d-8941-874b0b662771" class="">Constants</blockquote></div><div id="5f94aca4-f910-46ae-a341-a41325c25f8b" style="width:50.000000000000014%" class="column"><pre id="804cc815-d7ff-483d-b343-af3fabdbe722" class="code"><span><code>const int valor1 = x;
+const double valor2 = y;</code></span></pre></div></div><hr id="ee800b29-ca15-4821-8747-871baaac1efc"/><div id="435fb78b-f5ba-456e-a598-a5513b3fed0e" class="column-list"><div id="c1a6a618-36e7-4d63-aafb-24bca457e2af" style="width:50%" class="column"><blockquote id="87e967da-39d6-4f96-88d1-9690bd0c4baa" class="">Condicionals</blockquote><pre id="9f45ceba-fb74-4f25-a173-9896482cd956" class="code"><span><code>if () {
+
+}
+else if () {
+
+}
+else {
+
+}</code></span></pre></div><div id="52fa29c1-a0e6-4bfa-936e-c40cce322cc9" style="width:50%" class="column"><blockquote id="103abf78-8b7e-4bd4-87da-7bf793809793" class="">Switch</blockquote><pre id="9d098304-dcdf-49ff-ba6c-c6e6114c4641" class="code"><span><code>switch (valor1) {
+		case 1:
+				
+		break;
+
+		case 2:
+
+		break;
+
+		default:
+
+		break;
+}</code></span></pre></div></div><h3 id="552b5606-baf6-4fd3-8484-336d01c05f76" class="">Estrutures de repetició (Iteracions)</h3><p id="8f151210-885d-4c0e-9f14-4bc488151689" class="">for:  comptar un recompte de cuantes vegades hem realitzat una tasca.</p><p id="1e6eecb0-40f6-4bf0-bea0-98a68989e486" class="">while: fer alguna cosa mentres es compleix una condició.</p><div id="be5c8a65-61af-45b4-b4f3-7a6d4f80c090" class="column-list"><div id="f86050ed-24bc-4354-aa82-65d1eb647bf6" style="width:50%" class="column"><pre id="04b9bb4e-48af-41e9-b802-8353ccdb3e36" class="code"><span><code>while () {
+
+}</code></span></pre><p id="1d276436-7de1-471b-9636-0a3515c1d1d6" class="">
+</p><p id="c619407a-6b94-467e-9e5c-68bdf25bdddc" class="">
+</p></div><div id="69f46ee5-fb50-4974-a06f-71d9ec4b8c8e" style="width:50%" class="column"><pre id="aa96524b-1f63-47f1-884a-599c1c67c603" class="code"><span><code>do {
+
+}
+while () {
+
+}</code></span></pre></div></div><pre id="91ac53ab-701f-4a63-8715-92d1ec6a02ae" class="code"><span><code>for (i=0; i &lt; o &gt; N; i++) {
+
+}</code></span></pre><p id="b0140952-3991-4fe3-a0d5-d59235d6343e" class="">
+</p><h1 id="41f977b5-1fb1-4cb9-93f9-006e642ffaa9" class="">Seqüencies</h1><p id="20d1068e-ef64-427d-b308-136e6ea06017" class="">lletra + enter + lletra + enter …</p><pre id="cb6ca523-cafc-44e6-b10d-e52cbd3f12c5" class="code"><span><code>c = Convert.ToChar(Console.ReadLine());
+c = char.Parse(Console.ReadLine());</code></span></pre><p id="5018d73d-a354-455e-ace9-1ebb8c629a14" class="">Torna el codi ASCII del caracter</p><pre id="e26868e0-3ec1-464a-9cf8-91df40ce233f" class="code"><span><code>c = (char)Console.Read();</code></span></pre><p id="71084d81-dabd-4a7e-8564-01c7991e9206" class="">Agafa un caracter, no cal enter</p><pre id="5543a2c9-6348-43d7-8228-e559728e1df2" class="code"><span><code>c = Console.ReadKey().KeyChar;</code></span></pre><p id="b4e636f8-0107-4b8b-a403-02d6800ceef6" class="">
+</p><p id="2740761c-48d9-48d8-a737-9a8d34487c44" class="">
+</p><h2 id="dd14b725-b395-4f58-8f33-70809ddcebf6" class="">Metodes</h2><p id="73a57498-99b7-4cc3-9a67-fa3c731081c6" class="">És una manera de cridar a un mini programa que fa alguna cosa en concret.</p><p id="c80e5cd9-6f44-409d-b98d-0ff3f9711e4c" class="">Hi ha dos parts principals en aquest tipus de programes: </p><ul id="db1f6d2f-1ea1-40a9-8d69-e7ccdfbd17ab" class="bulleted-list"><li style="list-style-type:disc">El main: és el programa principal del cual es criden als metodes.</li></ul><ul id="fc2d1327-e7b8-40a0-acfd-42353de6bbed" class="bulleted-list"><li style="list-style-type:disc">Els metodes: son els mini programes que fa alguna cosa.</li></ul><p id="8cb71178-45be-4a63-8c86-d7da02621b52" class="">Estructura bàsica de un programa: <div class="indented"><pre id="0e9c65d1-050b-4dc1-a081-5adbcb202b6e" class="code"><span><code>namespace nomdelprograma;
+class Program
+{
+    static void Main(string[] args){
+
+    }
+    static bool metodes1(int n){
+					
+    }
+}</code></span></pre></div></p><p id="ad597f21-1dad-47b8-b11e-e9360f8656dc" class="">Els metodes poden retornar o no un resultat, si no retorna és void. També s’ha de dir que podem retornar un resultat sense return, fent una referencia en el programa i cmbiant la variable principal.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Exemple enviar per referencia</summary><div class="indented"><pre id="c08c6a94-51b7-4795-8424-59d426a1149b" class="code"><span><code>static void Main(string[] args)
+    {
+        int numero = 14;
+        SumaUn(numero); // pas per valor
+        Console.WriteLine(&quot;El valor és &quot; + numero); // mostra 14
+        SumaUn(ref numero); // pas per referència
+        Console.WriteLine(&quot;El valor és &quot; + numero); // mostra 15
+    }
+    static void SumaUn(int n)
+    {
+        n++;
+    }
+    static void SumaUn(ref int n)
+    {
+        n++; // al rebre la referència on està emmagatzemada la variable, estem modificant la original
+    }</code></span></pre></div></details><div id="47f8aab1-a80d-4e6e-b8ee-4f353a03947d" class="column-list"><div id="5207ea5e-f6f2-440c-9dac-84a2221933eb" style="width:68.75%" class="column"><p id="b193f372-ad3c-46bd-ae2b-945eea01fd4a" class="">Palabra clave <code><strong>var </strong></code>se usa para declarar una variable sin especificar el tipo de dato. En su lugar, el compilador infiere el tipo de dato a partir de la expresión que se encuentra en el lado derecho de la instrucción de inicialización. Por ejemplo, en lugar de escribir <code><strong>int edad = 5;</strong></code>, puedes escribir <code><strong>var edad = 5;</strong></code> y el compilador entenderá que <code><strong>edad</strong></code> es una variable de tipo <code><strong>int</strong></code>.</p><p id="5db1aec6-a673-4ad9-9032-45a206c3cc1c" class="">
+</p><p id="f6fb5ab9-8168-42ed-93d5-e6a1fb6308b5" class="">
+</p><p id="4aa19601-5c74-41ab-b51c-a995b689b76d" class="">
+</p></div><div id="60bbf843-ad5c-42e7-97ae-18f40d59b91b" style="width:31.250000000000007%" class="column"><pre id="4f0d02da-cc36-436f-b2e4-34ad9cd9d4ef" class="code"><span><code>var nombre = &quot;Luis&quot;;
+        var calle = &quot;Av, 5&quot;;
+        var numero = 10;
+        var clasificacion = 8.5;
+        var lletra = &quot;A&quot;;
+        int numeor2 = 6;</code></span></pre></div></div><p id="7ac46372-c31f-4661-9b66-290d7cde592e" class="">La palabra clave out se usa para pasar argumentos a métodos como un tipo de referencia. Esto significa que el parámetro formal en el método es un alias para el argumento que se pasa, y cualquier operación en el parámetro se realiza en el argumento. Es similar a la palabra clave ref, excepto que ref requiere que la variable se inicialice antes de pasarla.</p><p id="9ca9b210-3b83-43d3-a4eb-f8a36db2fbf5" class="">
+</p><p id="5f722d98-00b9-41c3-9726-181e61e5b7a9" class="">A continuació exemples de metodes que fan coses:</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">És parell ?</summary><div class="indented"><pre id="7032968b-fe1b-419e-91e4-95ccd21ff3e7" class="code"><span><code>static void Main(string[] args) {
+        int i;
+        for (i = 0; i &lt;= 10; i++) {
+            if (EsParell(i)){
+                Console.WriteLine(i + &quot; és parell&quot;);
+            } else {
+                Console.WriteLine(i + &quot; és senar&quot;);
+            }
+        }
+    }
+    static bool EsParell(int n){
+        return (n % 2 == 0);
+    }</code></span></pre><p id="d2fdd60f-e643-44df-a367-5725a6f52922" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Preguntar per un valor</summary><div class="indented"><pre id="6171b651-6533-4c0b-974d-9330fb628832" class="code"><span><code>static void Main(string[] args){
+	Console.WriteLine(&quot;Demanar una nota&quot;);
+	Console.WriteLine(&quot;Introdueix la teva nota&quot;);
+	double nota = Convert.ToInt32(Console.ReadLine());
+	nota(notaa);
+}
+static void nota(double notaa) {
+	Console.WriteLine(&quot;La teva nota és: &quot; + notaa);
+}</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Validar un valor</summary><div class="indented"><pre id="59bdd75c-b844-4768-9c73-ae64dd740cee" class="code"><span><code>static void Main(string[] args){
+	Console.WriteLine(&quot;Demanar una nota&quot;);
+	Console.WriteLine(&quot;Introdueix la teva nota&quot;);
+	double notaa = Convert.ToInt32(Console.ReadLine());
+	nota(notaa);
+}
+static bool validarnota(double notaa) {
+        if (notaa &gt;= 0 &amp;&amp; notaa &lt;= 10) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+//Si es vol validar una lletra, char, podria ser de la següent manera:
+static void respostavalida() {                 
+        Console.WriteLine(&quot;Introdueix una resposta de &#x27;s&#x27; o &#x27;n&#x27;: &quot;);
+        char valor = Console.ReadKey().KeyChar;
+        validarresposta(valor);
+    }
+    static void validarresposta(char valor) {
+        if (valor == &#x27;s&#x27; || valor == &#x27;S&#x27;) {
+            Console.WriteLine(&quot;\n La teva resposta és vàlida&quot;);
+        } else if (valor == &#x27;n&#x27; || valor == &#x27;N&#x27;) {
+            Console.WriteLine(&quot;\n La teva resposta és vàlida&quot;);
+        } else {
+            Console.WriteLine(&quot;\n La teva resposta és invàlida&quot;);
+        }
+    }</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Operacions de suma, resta, multiplicar, restar</summary><div class="indented"><pre id="642ffe14-6931-4ca4-b60a-abee93daec5a" class="code"><span><code>static void Main(string[] args)	
+	{
+		int a, b;
+		Console.WriteLine($&quot;1.-Sumar\n2.-Resta\n3.-Multiplicar\n4.-Dividir&quot;);
+		a=Convert.ToInt32(Console.ReadLine());
+
+		Console.Clear();
+		switch (a){
+			case 1:
+				suma();
+				break;
+
+			case 2:
+				Console.WriteLine(resta());
+				break;
+			
+			case 3:
+				a=Demanar();
+				b=Demanar();
+				mult(a, b);
+				break;
+
+			case 4:
+				a=Demanar();
+				b=Demanar();
+				Console.WriteLine(div(a, b));
+				break;
+
+			default:
+			break;
+		}
+		static int Demanar(){
+			int a;
+			Console.WriteLine(&quot;Dona&#x27;m un número&quot;);
+			return a=Convert.ToInt32(Console.ReadLine());
+		}
+		static void suma(){
+            int a, b;
+            Console.WriteLine(&quot;Dona&#x27;m dos números&quot;);
+            a=Convert.ToInt32(Console.ReadLine());
+            b=Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(a+b);
+		}
+
+		static int resta(){
+            int a, b;
+            Console.WriteLine(&quot;Dona&#x27;m dos números&quot;);
+            a=Convert.ToInt32(Console.ReadLine());
+            b=Convert.ToInt32(Console.ReadLine());
+            return a-b;
+		}
+		static void mult(int a, int b){
+			Console.WriteLine(a*b);
+		}
+		static int div(int a, int b)=&gt;a/b;
+	}</code></span></pre></div></details><div id="64191f1c-19a7-4f4c-8ab2-ba60ee4052fc" class="column-list"><div id="29f330e6-eea2-466f-a09c-d1c5d659ec69" style="width:50%" class="column"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Multiplicar a base de sumes</summary><div class="indented"><pre id="2527390b-e4bc-4739-a7ab-7609686f25f9" class="code"><span><code>static void Main(string[] args)	{               
+                Console.WriteLine(&quot;Introdueix el primer  valor --&gt; &quot;);
+                double valorS1 = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine(&quot;Introdueix el segon valor --&gt; &quot;);
+                double valorS2 = Convert.ToInt32(Console.ReadLine());
+
+                double valorS = producte(valorS1, valorS2);
+                Console.WriteLine($&quot;El teu resultat és {valorS}&quot;);
+}
+static double producte(double valorS1, double ValorS2 ) {
+        double resultat = 0;
+        for (int i = 0; i &lt; ValorS2 ; i++) {
+            resultat = resultat + valorS1 ;
+        }
+        return resultat;
+}</code></span></pre></div></details></div><div id="4a709e53-1514-45e9-8dae-bf7ef0b98a0d" style="width:50%" class="column"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Dividir a base de restes</summary><div class="indented"><pre id="1f9eb63b-b33e-463e-8cae-977a1b65e568" class="code"><span><code>//Demanar Dades
+                Console.WriteLine(&quot;Introdueix el primer  valor --&gt; &quot;);
+                int valorR1 = Convert.ToInt32(Console.ReadLine());
+                int valorR2;
+                do {
+                    Console.WriteLine(&quot;Introdueix el segon valor --&gt; &quot;);
+                    valorR2 = Convert.ToInt32(Console.ReadLine());
+                }while (valorR2 == 0);
+                //Rebre Dades
+                int valord = div(valorR1, valorR2);
+                Console.WriteLine($&quot;El resultat de la divisió és {valord}&quot;);
+static int div(int valorR1, int valorR2 ) {
+        int residu = valorR1;
+        int quocient = 0;
+        while (residu &gt;= valorR2) {
+            residu = residu - valorR2;
+            quocient++;
+        }
+        return quocient;
+    }</code></span></pre></div></details></div></div><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètode que donat un número calculi la suma del 1 al N</summary><div class="indented"><pre id="c8cac51d-3d0a-4c0a-ad98-4664cea62c4e" class="code"><span><code>//Demanar Dades
+                Console.WriteLine(&quot;Introdueix un valor--&gt; &quot;);
+                double valorM1 = Convert.ToInt32(Console.ReadLine());
+                //Rebre Dades
+                double valorM = producte1n(valorM1);
+                Console.WriteLine($&quot;El teu resultat és {valorM}&quot;);
+static double suma1n(double valorN1) {
+        double resultat = 0;
+        for (int i = 1; i &lt;= valorN1; i++) {
+            resultat = resultat + i ;
+        }
+        return resultat;
+    }</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètode que donat un número calculi el producte del 1 al N</summary><div class="indented"><pre id="1259e9bd-7dd8-46fe-871e-30e1f902769c" class="code"><span><code>//Demanar Dades
+                Console.WriteLine(&quot;Introdueix un valor--&gt; &quot;);
+                double valorN1 = Convert.ToInt32(Console.ReadLine());
+                //Rebre Dades
+                double valorn = suma1n(valorN1);
+                Console.WriteLine($&quot;El teu resultat és {valorn}&quot;);
+static double producte1n(double valorM1) {
+        double resultat = 1;
+        for (int i = 1; i &lt;= valorM1; i++) {
+            resultat = resultat * i ;
+        }
+        return resultat;
+    }</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètode que donat un número N calculi els seus divisors</summary><div class="indented"><pre id="d4ce1f22-ea75-4298-b8ac-18db0bf6e814" class="code"><span><code>								
+								//Demanar Dades
+                Console.WriteLine(&quot;Introdueix un valor--&gt; &quot;);
+                double valorD = Convert.ToInt32(Console.ReadLine());
+                //Rebre Dades
+                string valorDF = dividirN(valorD);
+                Console.WriteLine($&quot;El teu resultat {valorDF}&quot;);
+static string dividirN(double valorD) {
+        string resultat = &quot;són: &quot;;
+        for (double i = 1; i &lt; valorD; i++) {
+            if (valorD % i == 0) {
+                resultat = resultat + $&quot;- {i} -&quot;;
+            }
+        }
+        return resultat;
+    }</code></span></pre></div></details><hr id="1797eaa3-5e36-41ca-86af-b61eeceff188"/><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètode que donat un número N compti els divisors que té</summary><div class="indented"><pre id="68c447aa-d6b5-4a54-824a-e8c5e170dc5e" class="code"><span><code>static double divisors(double valorD){
+        double resultat = 1;
+        for (double i = 1; i &lt; valorD; i++){
+            if (valorD % i == 0){
+                resultat++;
+            }
+        }
+        return resultat;</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètode que donat un número N miri si un número és primer</summary><div class="indented"><pre id="d5ab2406-f515-4230-9c5f-60977a26b5dd" class="code"><span><code>static string primer(double valorP1){
+        string primer = &quot;És primer&quot;;
+        if (valorP1 &lt; 2){
+            primer = &quot;No és primer&quot;;
+        }else{
+            for (int i = 2; i &lt;= Math.Sqrt(valorP1); i++){
+                if (valorP1 % i == 0){
+                    primer = &quot;No és primer&quot;;
+                    break;
+                }
+            }
+        }
+        return primer;
+    }</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètode que donat un número enter N compti quantes xifres té</summary><div class="indented"><pre id="192310a4-a570-4d42-81ba-c8bd1a23dc1d" class="code"><span><code>static double Xifras(double valorN1){
+        double xifras = 0;
+        if (valorN1 == 0){
+            xifras = 1;
+        }else{
+            while (valorN1 != 0){
+                xifras++;
+                valorN1 /= 10;
+            }
+        }
+        return xifras;
+    }</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètode que donat un número enter N sumi les seves xifres</summary><div class="indented"><pre id="5719f793-aced-4614-b1f4-5dbee178d83d" class="code"><span><code>int suma = 0;
+    while (valorM1 != 0)
+    {
+        suma = suma + valorM1 % 10;
+        valorM1 = valorM1 / 10;
+    }
+    return suma;</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètode que donat un número enter mirar si és Capicua</summary><div class="indented"><pre id="a0384bb1-c97a-4118-8fe3-9fceb74f1936" class="code"><span><code>static bool Capicua(int valorC){
+        int Rev = 0;
+        int valor = valorC;
+        while (valorC != 0){
+            int digito = valorC % 10;
+            Rev = (Rev * 10) + digito;
+            valorC /= 10;
+        }
+        if (valor == Rev){
+            return true;
+        }else{
+            return false;
+        }
+    }</code></span></pre></div></details><hr id="ef1d8d3b-0570-4947-aec0-3ac933d296ca"/><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètode per intercanviar dos valors donats</summary><div class="indented"><pre id="d58bd340-4f29-4c75-b6b1-c9d37b71b5e3" class="code"><span><code>//Demanar Dades
+                Console.WriteLine(&quot;Introdueix el primer  valor --&gt; &quot;);
+                double valorI1 = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine(&quot;Introdueix el segon valor --&gt; &quot;);
+                double valorI2 = Convert.ToInt32(Console.ReadLine());
+                //Rebre Dades
+                intercanvi(ref valorI1, ref valorI2);
+                Console.WriteLine($&quot;El teu resultat són {valorI1} i {valorI2}&quot;);
+static void intercanvi(ref double valorI1, ref double valorI2 ) {
+        double ajuda;
+        ajuda = valorI1;
+        valorI1 = valorI2;
+        valorI2 = ajuda;
+    }</code></span></pre><p id="785f2d16-e8a0-4efc-848e-d9342f69bf59" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètode per mirar si és una lletra</summary><div class="indented"><pre id="b5cf17e7-0a2d-4a8c-8a48-ec72c3d6b4e1" class="code"><span><code>static bool lletra(char valorL1){
+        bool resposta;
+        if (valorL1 &gt;= &#x27;a&#x27; &amp;&amp; valorL1 &lt;= &#x27;z&#x27; || valorL1 &gt;= &#x27;A&#x27; &amp;&amp; valorL1 &lt;= &#x27;Z&#x27; || valorL1 == &#x27;ñ&#x27; || valorL1 == &#x27;ç&#x27; || valorL1 == &#x27;Ñ&#x27; || valorL1 == &#x27;Ç&#x27;){
+            resposta = true; 
+        }else {
+            resposta = false;
+        }
+        return resposta;
+    }</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètode per mirar si és un vocal</summary><div class="indented"><pre id="d79310ca-e85d-424f-a15e-a739a5ceee65" class="code"><span><code>static bool vocal(char valorV1){
+        bool resposta;
+        if (valorV1 == &#x27;a&#x27; || valorV1 == &#x27;e&#x27; || valorV1 == &#x27;i&#x27;|| valorV1 == &#x27;o&#x27; || valorV1 == &#x27;u&#x27; || valorV1 == &#x27;A&#x27; || valorV1 == &#x27;E&#x27; || valorV1 == &#x27;I&#x27;|| valorV1 == &#x27;O&#x27; || valorV1 == &#x27;U&#x27;){
+            resposta = true;
+        }else {
+            resposta = false;
+        }
+        return resposta;
+    }</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètode per comprobar si és una consonant utilizant altres dos métodes</summary><div class="indented"><pre id="0eb556c0-ce31-43f5-8b4b-44f025a2e0c0" class="code"><span><code>static bool consonant(char valorC1){
+        return !(vocal(valorC1)) &amp;&amp; lletra(valorC1);
+    }</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mètodes per calcular la mitjana de 3 valors</summary><div class="indented"><pre id="c518b303-9bd5-4f85-88c3-3527442262d8" class="code"><span><code>static double mitjana(double valorM1, double valorM2, double valorM3){
+        double resposta;
+        resposta = (valorM1 + valorM2 + valorM3)/3;
+        return resposta;
+    }</code></span></pre></div></details><hr id="e896f09d-4341-4777-86ac-cc144a3c1924"/><h2 id="415f0372-3676-4d50-8cec-3c31747c9759" class="">Mètodes recursius</h2><p id="13f88d6f-f7b9-4ef6-b13e-a3ff7049bf0d" class="">Un mètode recursiu és aquell que es crida a ell mateix.</p><div id="000413b6-5a0d-4753-8fa0-84a5abdac7a4" class="column-list"><div id="4cdadcd6-10cf-4101-a64f-6ade5dea771f" style="width:18.75%" class="column"><p id="1a1d8021-a108-4c16-82c5-d15498683ed9" class="">Exemples de mètodes recursius:</p></div><div id="eef932cc-c4cd-4177-88f2-c918d636b1e7" style="width:81.25%" class="column"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Factorial</summary><div class="indented"><pre id="dd1ab81a-3d4c-4aac-a038-b32e35409ca9" class="code"><span><code>static long factorial(long n) {
+        if (n == 0) {
+            return 1;
+        } else {
+            return n * factorial(n - 1);
+        }
+    }</code></span></pre><p id="81493625-3a34-44c8-8996-fb30e00af4ad" class="">
+</p></div></details></div></div><h2 id="6b593491-2fd8-445a-a1c9-c9a674b9f518" class="">FOREACH</h2><div id="2b3d8563-b7a6-4124-ac48-44caf4d850b6" class="column-list"><div id="9ec7af87-0052-49ad-a84e-b5d9d5c790e2" style="width:31.25%" class="column"><p id="4ae66a6a-72ec-4525-bdd9-27dbd8040625" class="">El foreach se utiliza para sacar uno a uno los valores de una lista e imprimirlos por pantalla. </p></div><div id="392fd8b9-7a8b-4ec1-8206-9132ba48e69b" style="width:68.75%" class="column"><pre id="854d6df8-49f5-4ba2-9bf1-1d936b1c8e9e" class="code"><span><code>foreach (&quot;tipus de variable&quot; &quot;nom de variable&quot; in &quot;lista&quot;)
+{
+	Console.WriteLine(&quot;nom de variable&quot;);
+}</code></span></pre></div></div><h2 id="2ab5abd1-af04-4b13-a7a3-82b760fc983b" class="">Arrays</h2><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Pedir valor</summary><div class="indented"><pre id="2a6f2e69-1b19-4636-8b7c-7fbb85374741" class="code"><span><code>//Matriu unidimensional
+static int[] DemanarValors(int[] taula){
+            Console.WriteLine(&quot;Introdueix els valors de la taula:&quot;);
+            for (int i = 0; i &lt; taula.Length; i++){
+                Console.Write($&quot;Valor de la posició {i + 1}: &quot;);
+                taula[i] = Convert.ToInt32(Console.ReadLine());
+            }
+				return taula;
+        }
+//Matriu bidimensional
+static int[,] DemanarValors(int[,] taula){
+        Console.WriteLine(&quot;Introdueix els valors de la taula:&quot;);
+
+        for (int fila = 0; fila &lt; 3; fila++){
+            for (int columna = 0; columna &lt; 3; columna++){
+                Console.Write($&quot;Valor de la fila {fila + 1}, columna {columna + 1}: &quot;);
+                taula[fila, columna] = Convert.ToInt32(Console.ReadLine());
+            }
+        }
+			return taula;
+    }
+//Matriu tridimensional
+static int[,,] PedirValores(int[,,] tabla) {
+    for (int i = 0; i &lt; tabla.GetLength(0); i++) {
+        for (int j = 0; j &lt; tabla.GetLength(1); j++) {
+            for (int l = 0; l &lt; tabla.GetLength(2); l++) {
+                Console.Write($&quot;Ingrese el valor para tabla[{i},{j},{l}]: &quot;);
+                tabla[i, j, l] = Convert.ToInt32(Console.ReadLine());
+            }
+        }
+    }
+		return tabla;
+}</code></span></pre><p id="05190be6-8d06-4ea9-91a0-452df5810ac8" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mostrar un valor la tridimensional esta mal</summary><div class="indented"><pre id="c96b1bd3-ba81-4007-a5dd-b66b2972b59b" class="code"><span><code>//Taula unidimensional, un vector
+static void Mostrar(int[] taula){
+            Console.WriteLine(&quot;La taula és:&quot;);
+            for (int i = 0; i &lt; taula.Length; i++){
+                Console.Write(taula[i] + &quot;\t&quot;);
+                if ((i + 1) % 3 == 0) Console.WriteLine();
+            }
+        }
+//Taula bidimensional
+static void Mostrar(int[,] taula){
+        Console.WriteLine(&quot;La taula és:&quot;);
+        for (int i = 0; i &lt; taula.GetLength(0); i++){
+            for (int columna = 0; columna &lt; taula.GetLenght(1); columna++){
+                Console.Write(taula[i, columna] + &quot;\t&quot;);
+            }
+            Console.WriteLine();
+        }
+    }
+//Taula tridimensional
+static int[,,] PedirValores(int[,,] taula) {
+    for (int i = 0; i &lt; taula.GetLength(0); i++) {
+        for (int j = 0; j &lt; taula.GetLength(1); j++) {
+            for (int l = 0; l &lt; taula.GetLength(2); l++) {
+                Console.Write($&quot;Ingrese el valor para tabla[{i},{j},{l}]: &quot;);
+                taula[i, j, l] = int.Parse(Console.ReadLine());
+            }
+        }
+    }
+		return tabla;
+}</code></span></pre><p id="f2737129-0c34-4ccc-b983-882bfe0b1136" class="">/t es un tab</p><p id="0ff4f435-d477-41c4-ae52-879d422d385f" class="">/n es un intro</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mostrar fins a nElements</summary><div class="indented"><pre id="28670725-72cc-4fdf-b046-bdd2a8fd31bb" class="code"><span><code>static void MostrarTaula(int[] taula, int nElements){
+            Console.WriteLine($&quot;La taula fins a la posició {nElements} és:&quot;);
+            for (int i = 0; i &lt; nElements; i++){
+                Console.Write(taula[i] + &quot;\t&quot;);
+                if ((i + 1) % 3 == 0) Console.WriteLine();
+            }
+            Console.WriteLine();
+        }</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Omplir amb valor aleatori</summary><div class="indented"><pre id="584a7462-d45e-4f76-b1e5-842e6443c6a9" class="code"><span><code>//Matroiu unidimensional
+static void OmplirAleatori(int[] taula){
+            Random valorR = new Random();
+            for (int i = 0; i &lt; taula.Length; i++){
+                taula[i] = valorR.Next(101);
+            }
+            Mostrar(taula);
+        }
+//Matriu bidimensional
+static void OmplirAleatori(int[,] matriu){
+    Random valorR = new Random();
+    for (int i = 0; i &lt; matriu.GetLength(0); i++){
+        for (int j = 0; j &lt; matriu.GetLength(1); j++){
+            matriu[i,j] = valorR.Next(101);
+        }
+    }
+    Mostrar(matriu);
+}
+//Matriu tridimensional
+static void OmplirAleatori(int[,,] matriu){
+    Random valorR = new Random();
+    for (int i = 0; i &lt; matriu.GetLength(0); i++){
+        for (int j = 0; j &lt; matriu.GetLength(1); j++){
+            for (int k = 0; k &lt; matriu.GetLength(2); k++){
+                matriu[i,j,k] = valorR.Next(101);
+            }
+        }
+    }
+    Mostrar(matriu);
+}</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Ordenar matriu</summary><div class="indented"><pre id="11cf23cd-7468-4a97-861e-25fc5c0bfe5a" class="code"><span><code>static int[] OrdenarValors(int[] taula){
+        Array.Sort(taula);
+        return taula;
+    }
+//Matriz bidimensional
+static int[,] OrdenarValores(int[,] taula){
+    int filas = taula.GetLength(0);
+    int columnas = taula.GetLength(1);
+
+    for (int i = 0; i &lt; filas; i++){
+        int[] fila = new int[columnas];
+        Array.Copy(taula, i * columnas, fila, 0, columnas);
+        Array.Sort(fila);
+        for (int j = 0; j &lt; columnas; j++){
+            taula.SetValue(fila[j], i, j);
+        }
+    }
+    return taula;
+}
+//Matriz tridimensional
+static int[,,] OrdenarValores(int[,,] taula){
+    int capas = taula.GetLength(0);
+    int filas = taula.GetLength(1);
+    int columnas = taula.GetLength(2);
+
+    for (int k = 0; k &lt; capas; k++){
+        for (int i = 0; i &lt; filas; i++){
+            int[] fila = new int[columnas];
+            for (int j = 0; j &lt; columnas; j++){
+                fila[j] = taula[k, i, j];
+            }
+            Array.Sort(fila);
+
+            for (int j = 0; j &lt; columnas; j++){
+                taula.SetValue(fila[j], k, i, j);
+            }
+        }
+    }
+    return taula;
+}</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Sumar matrius</summary><div class="indented"><pre id="8e5e7781-09fd-4f05-85cf-d899a0406521" class="code"><span><code>//Matriu unidimensional
+static double[] SumaVectors(double[] vector1, double[] vector2){
+        double[] vectorR = new double[vector1.Length];
+
+        if (vector1.Length == vector2.Length){
+            for (int i = 0; i &lt; vector1.Length; i++){
+                vectorR[i] = vector1[i] + vector2[i];
+            }
+        }else{
+            Console.WriteLine(&quot;Els vectors amb longituds diferents no es poden sumar.&quot;);
+        }
+        return vectorR;
+    }
+//Matriu bidimensional
+static double[,] SumaMatrices(double[,] matriz1, double[,] matriz2){
+    int filas = matriz1.GetLength(0);
+    int columnas = matriz1.GetLength(1);
+
+    if (filas == matriz2.GetLength(0) &amp;&amp; columnas == matriz2.GetLength(1)){
+        double[,] matrizR = new double[filas, columnas];
+
+        for (int i = 0; i &lt; filas; i++){
+            for (int j = 0; j &lt; columnas; j++){
+                matrizR[i,j] = matriz1[i,j] + matriz2[i,j];
+            }
+        }
+        return matrizR;
+    }else{
+        Console.WriteLine(&quot;Les matrius no tenen les mateixes dimensions i no es poden sumar.&quot;);
+        return null;
+    }
+}
+//Matriz tridimensional
+static double[,,] SumaMatrices3D(double[,,] matriz1, double[,,] matriz2){
+    int dim1 = matriz1.GetLength(0);
+    int dim2 = matriz1.GetLength(1);
+    int dim3 = matriz1.GetLength(2);
+
+    if (dim1 == matriz2.GetLength(0) &amp;&amp; dim2 == matriz2.GetLength(1) &amp;&amp; dim3 == matriz2.GetLength(2)){
+        double[,,] matrizR = new double[dim1, dim2, dim3];
+
+        for (int i = 0; i &lt; dim1; i++){
+            for (int j = 0; j &lt; dim2; j++){
+                for (int k = 0; k &lt; dim3; k++){
+                    matrizR[i,j,k] = matriz1[i,j,k] + matriz2[i,j,k];
+                }
+            }
+        }
+        return matrizR;
+    }else{
+        Console.WriteLine(&quot;Les matrius no tenen les mateixes dimensions i no es poden sumar.&quot;);
+        return null;
+    }
+}</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Multiplicar matrius</summary><div class="indented"><pre id="237d8d05-e97f-4af1-b304-d04a567d756a" class="code"><span><code>//Matriu unidimensional
+static double MultiplicaVectors(double[] vector1, double[] vector2){
+        double resultat = 0;
+
+        if (vector1.Length == vector2.Length){
+            for (int i = 0; i &lt; vector1.Length; i++){
+                resultat += vector1[i] * vector2[i];
+            }
+        }else{
+            Console.WriteLine(&quot;Els vectors amb longituds diferents no es poden multiplicar&quot;);
+        }
+        return resultat;
+    }
+//Matriu bidimensional
+static double[,] MultiplicaMatrices(double[,] matriz1, double[,] matriz2) {
+    int m1Rows = matriz1.GetLength(0);
+    int m1Cols = matriz1.GetLength(1);
+    int m2Rows = matriz2.GetLength(0);
+    int m2Cols = matriz2.GetLength(1);
+
+    if (m1Cols != m2Rows) {
+        Console.WriteLine(&quot;No es possible multiplicar aquestes matrius.&quot;);
+        return null;
+    }
+    double[,] resultat = new double[m1Rows, m2Cols];
+
+    for (int i = 0; i &lt; m1Rows; i++) {
+        for (int j = 0; j &lt; m2Cols; j++) {
+            double temp = 0;
+            for (int k = 0; k &lt; m1Cols; k++) {
+                temp += matriz1[i, k] * matriz2[k, j];
+            }
+            resultat[i, j] = temp;
+        }
+    }
+    return resultat;
+}
+//Matriu tridimensional
+static double[,,] MultiplicaMatrices3D(double[,,] matriz1, double[,,] matriz2) {
+    int m1Rows = matriz1.GetLength(0);
+    int m1Cols = matriz1.GetLength(1);
+    int m1Depth = matriz1.GetLength(2);
+    int m2Cols = matriz2.GetLength(1);
+    int m2Depth = matriz2.GetLength(2);
+    int m2Rows = matriz2.GetLength(0);
+
+    if (m1Cols != m2Rows || m1Depth != m2Depth) {
+        Console.WriteLine(&quot;No es possible multiplicar aquestes matrius.&quot;);
+        return null;
+    }
+    double[,,] resultat = new double[m1Rows, m2Cols, m2Depth];
+
+    for (int i = 0; i &lt; m1Rows; i++) {
+        for (int j = 0; j &lt; m2Cols; j++) {
+            for (int k = 0; k &lt; m2Depth; k++) {
+                double temp = 0;
+                for (int l = 0; l &lt; m1Cols; l++) {
+                    temp += matriz1[i, l, k] * matriz2[l, j, k];
+                }
+                resultat[i, j, k] = temp;
+            }
+        }
+    }
+    return resultat;
+}</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Buscar més gran i més petit</summary><div class="indented"><pre id="23f2550b-1f63-4b3c-9748-a260cd438e22" class="code"><span><code>//Matriu unidimensional
+static int mesgran(int[] vector){
+        int gran = vector[0];
+        for (int i = 0; i &lt; 5; i++){
+            if (vector[i] &gt; gran){
+                gran = vector[i];
+            }
+        }
+        return gran;
+    }
+static int mespetit(int[] vector){
+        int petit = vector[0];
+        for (int i = 0; i &lt; 5; i++){
+            if (vector[i] &lt; petit){
+                petit = vector[i];
+            }
+        }
+        return petit;
+    }
+//Matriu bidimensional
+static int maximo(int[][] matriz) {
+    int max = matriz[0][0];
+    for (int i = 0; i &lt; matriz.length; i++) {
+        for (int j = 0; j &lt; matriz[i].length; j++) {
+            if (matriz[i][j] &gt; max) {
+                max = matriz[i][j];
+            }
+        }
+    }
+    return max;
+}
+static int minimo(int[][] matriz) {
+    int min = matriz[0][0];
+    for (int i = 0; i &lt; matriz.length; i++) {
+        for (int j = 0; j &lt; matriz[i].length; j++) {
+            if (matriz[i][j] &lt; min) {
+                min = matriz[i][j];
+            }
+        }
+    }
+    return min;
+}
+//Matriu tridimensional
+static int maximo(int[][][] matriz) {
+    int max = matriz[0][0][0];
+    for (int i = 0; i &lt; matriz.length; i++) {
+        for (int j = 0; j &lt; matriz[i].length; j++) {
+            for (int k = 0; k &lt; matriz[i][j].length; k++) {
+                if (matriz[i][j][k] &gt; max) {
+                    max = matriz[i][j][k];
+                }
+            }
+        }
+    }
+    return max;
+}
+static int minimo(int[][][] matriz) {
+    int min = matriz[0][0][0];
+    for (int i = 0; i &lt; matriz.length; i++) {
+        for (int j = 0; j &lt; matriz[i].length; j++) {
+            for (int k = 0; k &lt; matriz[i][j].length; k++) {
+                if (matriz[i][j][k] &lt; min) {
+                    min = matriz[i][j][k];
+                }
+            }
+        }
+    }
+    return min;
+}</code></span></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Varios</summary><div class="indented"><pre id="9b792d13-55b7-4a41-9d6f-df5b0e0865a4" class="code"><span><code>//Matriz unidimensionales
+static void Main(string[] args)
+    {
+        int[] numbers = { 3, 1, 4, 1, 5, 9, 2, 6, 5, 3 }; // Crear un array
+        AccessArray(numbers); // Acceder a elementos en un array
+        TraverseArray(numbers); // Recorrer un array
+        SortArray(numbers); // Ordenar un array
+        SearchArray(numbers, 6); // Buscar un elemento en un array
+        CopyArray(numbers); // Copiar un array
+    }
+
+    static void AccessArray(int[] arr)
+    {
+        int thirdNumber = arr[2]; // Acceder a elementos en un array
+        Console.WriteLine($&quot;El tercer número en el array es: {thirdNumber}&quot;);
+    }
+
+    static void TraverseArray(int[] arr)
+    {
+        foreach (int number in arr) // Recorrer un array
+        {
+            Console.Write($&quot;{number} &quot;);
+        }
+        Console.WriteLine();
+    }
+
+    static void SortArray(int[] arr)
+    {
+        Array.Sort(arr); // Ordenar un array
+        Console.Write(&quot;El array ordenado es: &quot;);
+        TraverseArray(arr);
+    }
+
+    static void SearchArray(int[] arr, int num)
+    {
+        int index = Array.IndexOf(arr, num); // Buscar un elemento en un array
+        if (index != -1)
+        {
+            Console.WriteLine($&quot;El número {num} se encuentra en la posición {index} del array.&quot;);
+        }
+        else
+        {
+            Console.WriteLine($&quot;El número {num} no se encuentra en el array.&quot;);
+        }
+    }
+
+    static void CopyArray(int[] arr)
+    {
+        int[] copy = new int[arr.Length]; // Copiar un array
+        Array.Copy(arr, copy, arr.Length);
+        Console.Write(&quot;El array copiado es: &quot;);
+        TraverseArray(copy);
+    }
+//Matriz bidimensionales
+static void Main(string[] args)
+    {
+        int[,] matrix = {
+            { 1, 2, 3 },
+            { 4, 5, 6 },
+            { 7, 8, 9 }
+        }; // Crear un array bidimensional
+
+        AccessArray(matrix); // Acceder a elementos en un array bidimensional
+        TraverseArray(matrix); // Recorrer un array bidimensional
+    }
+
+    static void AccessArray(int[,] arr)
+    {
+        int value = arr[1, 2]; // Acceder a elementos en un array bidimensional
+        Console.WriteLine($&quot;El valor en la posición (1,2) del array es: {value}&quot;);
+    }
+
+    static void TraverseArray(int[,] arr)
+    {
+        for (int i = 0; i &lt; arr.GetLength(0); i++) // Recorrer un array bidimensional
+        {
+            for (int j = 0; j &lt; arr.GetLength(1); j++)
+            {
+                Console.Write($&quot;{arr[i, j]} &quot;);
+            }
+            Console.WriteLine();
+        }
+    }</code></span></pre></div></details><p id="59dc1fd6-f077-4e25-98be-34477ed760ac" class="">
+</p><h3 id="70cefd9b-b5f9-47cb-9245-624dadfed7a8" class="">Ajuda per visualitzar matrius</h3><ul id="e82e7272-74c3-4421-a816-a3c57b168bc1" class="toggle"><li><details open=""><summary><strong>Separar Strings al mostrar matriu</strong></summary><p id="7a726819-857c-41f5-9ede-2127d7ee05ef" class="">string.Join</p><pre id="36b8cb79-6a9a-4948-ba59-44af89b5681e" class="code"><span><code>string[] names = { &quot;Raul&quot;, &quot;Iker&quot;, &quot;Aniol&quot; };
+string result = string.Join(&quot;,&quot;, names);</code></span></pre></details></li></ul><pre id="c656a3bb-b2cb-425b-97a4-8d23c658f788" class="code"><span><code>string nombres = &quot;Iker, Raúl, Eric&quot;;string[] arrayNombres = nombres.Split(&#x27;,&#x27;);
+for(int i = 0; i &lt; arrayNombres.Length; i++){    Console.WriteLine(arrayNombres[i].Trim()); // Trim() elimina los espacios en blanco al inicio y final de cada nombre}
+</code></span></pre><p id="6e667c87-efd3-4987-88d0-f319d5511e32" class="">
+</p><p id="e7b040da-6823-4509-9a55-9ffe0415131b" class="">
+</p><h2 id="6d243025-0203-4451-a758-ea4f75e2ad59" class="">Escribir en Fitxers </h2><div id="a4fa9eab-0755-42c0-8974-61eb78d28c6a" class="column-list"><div id="c9d68096-9e46-4d00-8fa6-9074b76e6332" style="width:50%" class="column"><p id="1d2bd149-6f7f-4a03-bd8f-a8589dfbf666" class="">Llegir un fitxer</p></div><div id="adcdf7d2-468d-4257-a5a6-91dba43e45a4" style="width:50%" class="column"><p id="be5a7625-fb36-4902-acb3-6627cc2ac8c4" class="">Estructura try {}</p></div></div><div id="b62d7911-23a9-4446-8a45-6790c7c05647" class="column-list"><div id="aa69386e-5c16-4763-9bb8-b069aef7ce4e" style="width:50%" class="column"><pre id="a31acc56-c032-4d31-9609-709ed52956be" class="code"><span><code>            fitxer = new StreamReader(@&quot;.\textprova.txt&quot;); 
+            linia = fitxer.ReadLine();
+            fitxer.Close(); 
+            Console.WriteLine(linia); </code></span></pre></div><div id="e7b93926-c762-48fc-ace6-5ba79dc7ae5b" style="width:50%" class="column"><pre id="9ace8404-0147-49b4-8694-72bc16a2a588" class="code"><span><code>try {
+
+}catch(Exception e){
+	Console.WriteLine(e.Message);
+}</code></span></pre></div></div><p id="8cafb612-4238-46c4-b6ac-86ba023a54a0" class="">Escriure en un fitxer</p><pre id="ee8023df-f84f-4c4a-b405-ba8bcd48139f" class="code"><span><code>StreamWriter fitxer; 
+fitxer = new StreamWriter(@&quot;.\texto.txt&quot;); 
+fitxer.Write(&quot;Hola que tal ?&quot;);
+fitxer.Close();</code></span></pre><p id="cb9065bd-9a6b-4997-8d21-a4b97a6fad38" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
